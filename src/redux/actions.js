@@ -80,7 +80,6 @@ export const fetchWeather = location => {
                 .then(response => response.json(), error => reject({ error, type: 'network' }))
                 .then(
                     weather => {
-                        console.log(weather)
                         dispatch({ type: FETCH_WEATHER, payload: weather });
                         resolve();
                     },
