@@ -22,45 +22,35 @@ export const getCoordinates = () => {
                 },
                 error => {
                     console.log(error)
-                    // console.log("Internal Location Acess failed. Fetching location using external API")
-                    // fetch(CORS_ANYWHERE + 'http://ip-api.com/json/')
-                    //     .then(response => response.json())
-                    //     .then(response => {
-                    //         dispatch({
-                    //             type: GET_COORDINATES_FROM_BROWSER,
-                    //             payload: {
-                    //                 error: null,
-                    //                 location: {
-                    //                     latitude: response.lat,
-                    //                     longitude: response.lon
-                    //                 }
-                    //             }
-                    //         })
-                    //         resolve()
-                    //     })
-                    //     .catch(
-                    //         (error) => {
+                    console.log("Internal Location Acess failed. Fetching location using external API")
+                    fetch('/api/geolocation')
+                        .then(response => response.json())
+                        .then(response => {
+                            dispatch({
+                                type: GET_COORDINATES_FROM_BROWSER,
+                                payload: {
+                                    error: null,
+                                    location: {
+                                        latitude: response.lat,
+                                        longitude: response.lon
+                                    }
+                                }
+                            })
+                            resolve()
+                        })
+                        .catch(
+                            (error) => {
 
-                    //             dispatch(
-                    //                 {
-                    //                     type: GET_COORDINATES_FROM_BROWSER,
-                    //                     error: "Location not found!",
-                    //                     location: {}
-                    //                 }
-                    //             )
-                    //             reject({ error, type: 'geolocation' })
-                    //         }
-                    //     )
-
-                    dispatch(
-                        {
-                            type: GET_COORDINATES_FROM_BROWSER,
-                            error: "Location not found!",
-                            location: {}
-                        }
-                    )
-                    reject({ error, type: 'geolocation' })
-
+                                dispatch(
+                                    {
+                                        type: GET_COORDINATES_FROM_BROWSER,
+                                        error: "Location not found!",
+                                        location: {}
+                                    }
+                                )
+                                reject({ error, type: 'geolocation' })
+                            }
+                        )
                 },
                 { timeout: 1000 }
             );
@@ -108,7 +98,10 @@ export const fetchPlaceName = location => {
                     console.log(response)
                     dispatch({ type: FETCH_NAME_FROM_COORDINATES, city: response.address.city });
                     resolve();
-                });
+                })
+                .catch(
+                    err => reject(err)
+                )
         });
     };
 };

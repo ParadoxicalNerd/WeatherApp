@@ -10,3 +10,9 @@
     status=200
     force=true
     query={lon=':lon', lat=':lat'}
+
+[[redirects]]
+    from='/api/geolocation'
+    to='http://ip-api.com/json/'
+    status=200
+    force=true
