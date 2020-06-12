@@ -67,11 +67,18 @@ class App extends React.Component {
         } else if (this.state.networkError) {
             this.componentToRender = <h1>Error connecting to DarkCloud API. Check your firewall.</h1>
         } else {
-            this.componentToRender = <React.Fragment>
-                <PrimaryScreen temperature={this.props.store.weather.currently.temperature} city={this.props.store.location.city} summary={this.props.store.weather.currently.summary} icon={this.props.store.weather.currently.icon} />
-                <SecondaryScreen weather={this.props.store.weather.daily} />
-                <Footer />
-            </React.Fragment>
+            this.componentToRender =
+                <React.Fragment>
+                    <PrimaryScreen
+                        temperature={this.props.store.weather.currently.temperature}
+                        units={this.props.store.weather.flags.units}
+                        city={this.props.store.location.city}
+                        summary={this.props.store.weather.currently.summary}
+                        icon={this.props.store.weather.currently.icon}
+                    />
+                    <SecondaryScreen weather={this.props.store.weather.daily} />
+                    <Footer />
+                </React.Fragment>
         }
         return this.componentToRender
     }

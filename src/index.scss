@@ -19,22 +19,33 @@
     //     border: 1px dashed black;
     // }
 
+    // -------------------
+    // Allows me to create responsive font-sizes, without doing any real work ;)
     font-size: 1rem;
 
-    @media only screen and (min-width:600px) {
+    @media only screen and (min-width:500px) {
         font-size: 1.5rem;
     }
 
+    @media only screen and (min-aspect-ratio:1) {
+        font-size: 1.25rem;
+    }
+
     @media only screen and (min-width:768px) {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
     }
 
     @media only screen and (min-width:992px) {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
+
+    // -------------------
 
     width: 99vw;
     height: 100vh;
+
+    // -------------------
+    // Creates a dynamic grid
 
     display: grid;
 
@@ -47,7 +58,7 @@
 
     @media only screen and (min-aspect-ratio:1) {
         // margin: 5vh 12vw 5vh 10vw;
-        grid-template-columns: 1.5fr 1fr;
+        grid-template-columns: 1.25fr 1fr;
         grid-template-rows: 1fr 1fr;
         grid-template-areas:
             "temperature icon"
@@ -57,15 +68,17 @@
     justify-items: center;
     align-items: center;
 
-    // grid-auto-flow: row;
+    // -------------------
 
     .temperature {
         grid-area: temperature;
-        font-size: 7em;
+        font-size: 6em;
     }
 
     .city {
         grid-area: city;
+
+        // Ensures that the textbox remains is adjustable
 
         input {
             overflow: visible;

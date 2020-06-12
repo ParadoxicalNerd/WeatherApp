@@ -65,7 +65,7 @@ export const fetchWeather = location => {
             fetch(
                 `/api/darksky/${
                 location.latitude
-                },${location.longitude}?extend=hourly?units=si`
+                },${location.longitude}?extend=hourly&units=auto`
             )
                 .then(response => response.json(), error => reject({ error, type: 'network' }))
                 .then(
@@ -95,7 +95,6 @@ export const fetchPlaceName = location => {
             )
                 .then(response => response.json())
                 .then(response => {
-                    console.log(response)
                     if (response.address.city) {
                         dispatch({ type: FETCH_NAME_FROM_COORDINATES, city: response.address.city });
                     } else {
@@ -110,4 +109,6 @@ export const fetchPlaceName = location => {
     };
 };
 
-export const searchByPlace = (location, searchByPlace) => ({ type: SEARCH_BY_PLACE, location, searchByPlace })
+export const searchByPlace = (location, searchByPlace) => (
+    { type: SEARCH_BY_PLACE, location, searchByPlace }
+)
