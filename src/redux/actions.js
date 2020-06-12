@@ -96,7 +96,11 @@ export const fetchPlaceName = location => {
                 .then(response => response.json())
                 .then(response => {
                     console.log(response)
-                    dispatch({ type: FETCH_NAME_FROM_COORDINATES, city: response.address.city });
+                    if (response.address.city) {
+                        dispatch({ type: FETCH_NAME_FROM_COORDINATES, city: response.address.city });
+                    } else {
+                        dispatch({ type: FETCH_NAME_FROM_COORDINATES, city: response.address.country });
+                    }
                     resolve();
                 })
                 .catch(

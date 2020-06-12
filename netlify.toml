@@ -1,6 +1,6 @@
 [[redirects]]
     from='/api/darksky/*'
-    to='https://api.darksky.net/forecast/0a9c9e4db3dc47f565165acc0aa9c9fe/:splat' 
+    to='https://api.darksky.net/forecast/DarkSkyAPIKey/:splat' 
     status= 200
     force=true
 
