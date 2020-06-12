@@ -93,17 +93,7 @@ class fetchResults extends React.Component {
             fontSize: "0.8em",
             cursor: "pointer",
             textAlign: 'center',
-            width: this.props.width
         };
-
-        const textStyle = {
-            overflow: 'visible',
-            width: this.props.width,
-            background: 'transparent',
-            border: 0,
-            fontSize: '1em',
-            textAlign: 'center'
-        }
 
 
         return (
@@ -113,7 +103,6 @@ class fetchResults extends React.Component {
                     type="text"
                     value={this.state.typed}
                     onChange={this.onChange}
-                    style={textStyle}
                     onKeyDown={this.onEnter}
                     ref={this.state.ref}
                 />

@@ -2,6 +2,7 @@ import React from 'react'
 
 import PrimaryScreen from './primary_screen'
 import SecondaryScreen from './secondary_screen'
+import Footer from './Footer'
 
 import { connect } from 'react-redux'
 import { getCoordinates, fetchWeather, clearError, fetchPlaceName, searchByPlace } from './redux/actions'
@@ -69,7 +70,7 @@ class App extends React.Component {
             this.componentToRender = <React.Fragment>
                 <PrimaryScreen temperature={this.props.store.weather.currently.temperature} city={this.props.store.location.city} summary={this.props.store.weather.currently.summary} icon={this.props.store.weather.currently.icon} />
                 <SecondaryScreen weather={this.props.store.weather.daily} />
-                <div style={{ position: "fixed", top: 0, left: 0 }}>Powered by DarkSky API</div>
+                <Footer />
             </React.Fragment>
         }
         return this.componentToRender

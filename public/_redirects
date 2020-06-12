@@ -1,4 +1,0 @@
-/api/darksky/* https://api.darksky.net/forecast/0a9c9e4db3dc47f565165acc0aa9c9fe/:splat 200
-/api/openstreetmap/* lat=:lat lon=:lon https://nominatim.openstreetmap.org/reverse?format=json&lat=:lat&lon=:lon&zoom=10&addressdetails=1 200
-/api/geolocation http://ip-api.com/json/ 200
-/*  /index.html  200

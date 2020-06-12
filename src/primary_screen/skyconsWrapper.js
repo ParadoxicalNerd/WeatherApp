@@ -29,7 +29,7 @@ export default class ReactSkycons extends React.Component {
 
     render() {
         return (
-            <canvas width={this.state.size} height={this.state.size} ref={this.state.ref} />
+            <canvas width={this.state.size} height={this.state.size} ref={this.state.ref} class='icon' />
         )
     }
 }
