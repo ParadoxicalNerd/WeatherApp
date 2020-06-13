@@ -8,17 +8,20 @@ class fetchResults extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            prevTyped: this.props.hydrator,
-            typed: this.props.hydrator,
+            prevTyped: this.props.hydrator, // "Hydrates" the initial value with the passed name
+            typed: this.props.hydrator, // "Hydrates" the initial value with the passed name
             prediction: "",
             coordinates: [],
-            timerID: null
+            timerID: null,
+            focus: false
         };
 
         this.serverFetch = this.serverFetch.bind(this);
         this.onChange = this.onChange.bind(this);
         this.onClick = this.onClick.bind(this);
         this.onEnter = this.onEnter.bind(this);
+
+        this.onFocus = this.onFocus.bind(this);
     }
 
     serverFetch() {
@@ -44,7 +47,7 @@ class fetchResults extends React.Component {
                             }));
                         });
                 }
-            }, 500)
+            }, 500) // Set's API request interval to 500ms
         })
     }
 
@@ -63,10 +66,11 @@ class fetchResults extends React.Component {
     }
 
     onClick() {
-        //When the user clicks on a prediction set that to the city and call REDUX store
+        //When the user clicks on a prediction set that to the city and call redux store
         this.setState(prevState => ({
             prevTyped: prevState.prediction,
-            typed: prevState.prediction
+            typed: prevState.prediction,
+            focus: false // Only if user selects an option, let go
         }));
         this.props.setCity({ city: this.state.prediction, latitude: this.state.coordinates[1], longitude: this.state.coordinates[0] })
 
@@ -79,13 +83,20 @@ class fetchResults extends React.Component {
         }
     }
 
+    onFocus() {
+        // If the user clicks inside region, show suggestions
+        this.setState({
+            focus: true
+        })
+    }
+
     render() {
 
         //Decides whether to show the predictions
         let predictionStyle =
-            this.state.typed === this.state.prediction
-                ? { display: "none" }
-                : { display: "block" };
+            this.state.focus
+                ? { display: "block" }
+                : { display: "none" };
 
         predictionStyle = {
             ...predictionStyle,
@@ -104,7 +115,7 @@ class fetchResults extends React.Component {
                     value={this.state.typed}
                     onChange={this.onChange}
                     onKeyDown={this.onEnter}
-                    ref={this.state.ref}
+                    onFocus={this.onFocus}
                 />
                 <div
                     onClick={this.onClick}
@@ -118,13 +129,11 @@ class fetchResults extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    //FIXME: Using workaround for maximum width. Fix in future so length equals the length typed ONLY
-    width: '100vw',
     hydrator: state.location.city
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    setCity: (location) => dispatch(searchByPlace(location, true))
+    setCity: (location) => dispatch(searchByPlace(location))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(fetchResults)

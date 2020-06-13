@@ -9,29 +9,21 @@ import thunk from "redux-thunk";
 
 import { reducer } from './redux/reducers'
 
-let k
+let middleware = applyMiddleware(thunk)
 
-if ('development' === process.env.NODE_ENV) {
-    k = compose(
-        applyMiddleware(thunk),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
-} else {
-k = applyMiddleware(thunk)
+// Adds React and Redux Devtools to middleware
+if (process.env.NODE_ENV === 'development') {
+    middleware = compose(middleware, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 }
 
+// Creates Redux Store
 const store = createStore(
     reducer,
-    {
-        location: { latitude: "8.5830", longitude: "72.4933" },
-        error: null,
-        weather: {},
-        searchByPlace: false
-    },
-    k
+    middleware
 
 );
 
+// Ensures that store is available to the main app
 ReactDOM.render(
     <Provider store={store}>
         <App />
