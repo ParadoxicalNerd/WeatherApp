@@ -17,17 +17,17 @@ export default class Temperature extends React.Component {
 
     onClick() {
 
-        if (this.state.units === 'ca') {
-            let temp = (this.state.temperature * 9 / 5) + 32
-            this.setState((prevState) => ({
-                temperature: temp,
-                units: 'us'
-            }))
-        } else {
+        if (this.state.units === 'us') {
             let temp = (this.state.temperature - 32) * 5 / 9
             this.setState((prevState) => ({
                 temperature: temp,
                 units: 'ca'
+            }))
+        } else {
+            let temp = (this.state.temperature * 9 / 5) + 32
+            this.setState((prevState) => ({
+                temperature: temp,
+                units: 'us'
             }))
         }
 
@@ -36,7 +36,9 @@ export default class Temperature extends React.Component {
     render() {
         let units = {
             'ca': "℃",
-            'us': '℉'
+            'us': '℉',
+            'uk2': '℃',
+            'si': '℃'
         }
         return (
             <div className='temperature' onClick={this.onClick}>

@@ -44,7 +44,7 @@ class fetchResults extends React.Component {
                             }));
                         });
                 }
-            }, 1000)
+            }, 500)
         })
     }
 
