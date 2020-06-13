@@ -17,20 +17,20 @@ netlify dev
 
 TODO:
 
-[X] Implement refreshing of page when new location is typed out
+[x] Implement refreshing of page when new location is typed out
 
-[X] Use external API to determine location if geocoding fails
+[x] Use external API to determine location if geocoding fails
 
 [ ] Add graph for daily weather
 
-[X] Create a potrait mode friendly UI.
+[x] Create a potrait mode friendly UI.
 
-[X] Deploy the application
+[x] Deploy the application
 
 [ ] Migrate from DarkSky to Open Weather
 
-[X] Comment all logic of code
+[x] Comment all logic of code
 
-[X] Fix bug that caused refetching of weather data
+[x] Fix bug that caused refetching of weather data
 
-[X] Ensuring that API keys are not leaked to the user
+[x] Ensuring that API keys are not leaked to the user
