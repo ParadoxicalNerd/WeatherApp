@@ -26,6 +26,5 @@ yarn-error.log*
 .netlify
 
 # Self
-netlify.toml
-.gitignore
+# netlify.toml
 .env
