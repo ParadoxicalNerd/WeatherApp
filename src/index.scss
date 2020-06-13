@@ -42,7 +42,7 @@
     // -------------------
 
     width: 99vw;
-    height: 100vh;
+    min-height: 100vh;
 
     // -------------------
     // Creates a dynamic grid
@@ -56,7 +56,7 @@
     "icon"
     "summary";
 
-    @media only screen and (min-aspect-ratio:1) {
+    @media only screen and (orientation:landscape) {
         // margin: 5vh 12vw 5vh 10vw;
         grid-template-columns: 1.25fr 1fr;
         grid-template-rows: 1fr 1fr;
@@ -90,7 +90,7 @@
 
             font-size: 3em;
 
-            @media only screen and (min-aspect-ratio:1) {
+            @media only screen and (orientation:landscape) {
                 width: 50vw;
             }
         }

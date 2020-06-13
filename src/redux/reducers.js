@@ -5,7 +5,7 @@ export function reducer(state, action) {
         case GET_COORDINATES_FROM_BROWSER:
             return { ...state, ...action.payload };
         case FETCH_WEATHER:
-            return { ...state, weather: action.payload, searchByPlace: false };
+            return { ...state, weather: action.payload, searchByPlace: false }; // After we are done fetching the weather, we do not need the search parameter
         case FETCH_NAME_FROM_COORDINATES:
             return { ...state, location: { city: action.city, latitude: state.location.latitude, longitude: state.location.longitude } };
         case SEARCH_BY_PLACE:
